@@ -56,7 +56,34 @@ c11 = Client.create(name: "Blanche Vega" , specialist_id: s3.id , rbt_id:r4.id ,
 
 puts "Creating School Appointment"
 
+sa1 = Appointment.create( client_id: c1.id , specialist_id:s1.id , date_time: "2022-11-24 04:06:00")
+sa2 = Appointment.create( client_id: c2.id , specialist_id: s2.id , date_time: "2022-12-07 08:14:29")
+sa3 = Appointment.create( client_id: c3.id , specialist_id: s3.id , date_time: "2022-11-24 23:22:28")
+sa4 = Appointment.create( client_id: c4.id , specialist_id: s2.id , date_time: "2022-11-24 21:33:18")
+sa5 = Appointment.create( client_id: c5.id , specialist_id: s2.id , date_time: "2022-12-08 13:30:14")
+sa6 = Appointment.create( client_id: c6.id , specialist_id: s1.id , date_time: "2022-12-21 10:18:56")
+sa7 = Appointment.create( client_id: c7.id , specialist_id: s2.id , date_time: "2022-12-05 00:04:26")
+sa8 = Appointment.create( client_id: c8.id , specialist_id: s3.id , date_time: "2022-12-23 06:22:41")
+sa9 = Appointment.create( client_id: c9.id , specialist_id: s1.id , date_time: "2022-11-30 21:59:53")
+sa10 = Appointment.create( client_id: c10.id , specialist_id: s2.id , date_time: "2022-11-22 11:13:33")
+sa11 = Appointment.create( client_id: c11.id , specialist_id: s3.id , date_time: "2022-12-06 13:31:44")
+sa12 = Appointment.create( client_id: c1.id , specialist_id: s1.id , date_time: "2022-12-05 00:04:26")
+
 puts "Creating Home Appointment"
+ha1 = HAppointment.create( client_id: c1.id , specialist_id:s1.id , date_time: "2022-12-02 13:27:00")
+ha2 = HAppointment.create( client_id: c2.id , specialist_id: s2.id , date_time: "2022-12-26 05:49:12")
+ha3 = HAppointment.create( client_id: c3.id , specialist_id: s3.id , date_time: "2022-12-14 08:00:13")
+ha4 = HAppointment.create( client_id: c4.id , specialist_id: s2.id , date_time: "2022-12-28 04:21:52")
+ha5 = HAppointment.create( client_id: c5.id , specialist_id: s2.id , date_time: "2022-11-30 12:46:01")
+ha6 = HAppointment.create( client_id: c6.id , specialist_id: s1.id , date_time: "2022-12-20 05:35:02")
+ha7 = HAppointment.create( client_id: c7.id , specialist_id: s2.id , date_time: "2022-12-27 12:11:45")
+ha8 = HAppointment.create( client_id: c8.id , specialist_id: s3.id , date_time: "2022-12-26 22:23:26")
+ha9 = HAppointment.create( client_id: c9.id , specialist_id:s1.id , date_time: "2022-12-23 07:59:24")
+ha10 = HAppointment.create( client_id: c10.id , specialist_id: s2.id , date_time: "2022-11-23 19:48:22")
+ha11 = HAppointment.create( client_id: c11.id , specialist_id: s3.id , date_time: "2022-12-16 01:15:15")
+ha12 = HAppointment.create( client_id: c1.id , specialist_id: s1.id , date_time: "2022-12-08 07:15:17")
+
+puts "Finished Seeding"
 
 # Examples:
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])

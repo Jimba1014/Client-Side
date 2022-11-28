@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_143734) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_28_162307) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_143734) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "h_appointments", force: :cascade do |t|
+    t.bigint "client_id", null: false
+    t.bigint "specialist_id", null: false
+    t.datetime "date_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_h_appointments_on_client_id"
+    t.index ["specialist_id"], name: "index_h_appointments_on_specialist_id"
+  end
+
   create_table "rbts", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -80,4 +90,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_143734) do
   add_foreign_key "clients", "rbts"
   add_foreign_key "clients", "specialists"
   add_foreign_key "clients", "strategies"
+  add_foreign_key "h_appointments", "clients"
+  add_foreign_key "h_appointments", "specialists"
 end

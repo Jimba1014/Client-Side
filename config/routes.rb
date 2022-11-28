@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :h_appointments
   resources :appointments
   resources :clients
   resources :doctors
