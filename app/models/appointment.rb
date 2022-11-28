@@ -1,4 +1,4 @@
 class Appointment < ApplicationRecord
-  belongs_to :Client
-  belongs_to :Specialist
+  belongs_to :client
+  belongs_to :specialist
 end

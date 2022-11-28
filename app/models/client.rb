@@ -1,6 +1,6 @@
 class Client < ApplicationRecord
-  belongs_to :Specialist
-  belongs_to :Rbt
-  belongs_to :Doctor
-  belongs_to :Strategy
+  belongs_to :specialist
+  belongs_to :rbt
+  belongs_to :doctor
+  belongs_to :strategy
 end
