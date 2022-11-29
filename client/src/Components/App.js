@@ -10,6 +10,9 @@ import SchoolApptContainer from "./SchoolApptContainer";
 
 function App() {
   const [count, setCount] = useState(0);
+  // const [currentUser, setCurrentUser] = useState(false)
+
+  // const updateUser = (user) => setCurrentUser(user)
 
   useEffect(() => {
     fetch("/hello")
