@@ -4,4 +4,5 @@ class Client < ApplicationRecord
   belongs_to :doctor
   belongs_to :strategy
   has_many :appointments
+  has_many :h_appointments
 end
