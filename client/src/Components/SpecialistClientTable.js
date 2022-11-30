@@ -1,4 +1,5 @@
-function SpecialistClientTable(){
+
+function SpecialistClientTable(client){
     return(
         <div>Specialist Client Table</div>
     )

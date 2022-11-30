@@ -36,14 +36,14 @@ function App() {
   }, []);
 
 
+
   return (
     <div className="App">
       <NavBar currentUser={currentUser} updateUser={updateUser} testVariable setTestVariable/>
-      {currentUser ? <h1>Welcome {currentUser.first_name}!</h1> : null}
       <Routes>
         <Route exact path= "/" element={<Login updateUser={updateUser}/>}/>
         <Route path="/signup" element={<SignUp/>}/>
-        <Route path="/home" element={<SpecialistContainer/>}/>
+        <Route path="/home" element={<SpecialistContainer currentUser={currentUser} clients={currentUser?.clients}/>}/>
         <Route path="/Clients" element={<ClientContainer/>}/>
         <Route path="/Appointments" element={<SchoolApptContainer/>}/>
         <Route path="/Home_Visits" element={<HomeApptContainer/>}/>
