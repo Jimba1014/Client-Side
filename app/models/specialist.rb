@@ -1,4 +1,5 @@
 class Specialist < ApplicationRecord
+    has_secure_password
     has_many :clients
     has_many :appointments, through: :clients
     has_many :strategies, through: :clients

@@ -10,7 +10,6 @@ import SchoolApptContainer from "./SchoolApptContainer";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
-  // const [currentUser, setCurrentUser] = useState(false)
 
   const updateUser = (user) => setCurrentUser(user)
 
@@ -18,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <NavBar currentUser={currentUser} updateUser={updateUser}/>
+      {currentUser ? <div>Welcome {currentUser.first_name}!</div> : null}
       <Login updateUser={updateUser}/>
       <SignUp/>
       <SpecialistContainer/>
