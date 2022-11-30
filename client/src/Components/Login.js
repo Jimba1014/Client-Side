@@ -15,7 +15,7 @@ function Login(){
         <Form.Control type="password" placeholder="Password" />
       </Form.Group>
       <Button variant="primary" type="submit">
-        Submit
+        Log in
       </Button>
     </Form>
     )

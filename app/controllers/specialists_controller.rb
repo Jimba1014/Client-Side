@@ -1,4 +1,5 @@
 class SpecialistsController < ApplicationController
+
     def index
         render json: Specialist.all, status: :ok
     end
