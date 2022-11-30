@@ -24,7 +24,7 @@ function SpecialistContainer({currentUser}){
     return(
         <div>
             {currentUser ? <h1>Welcome {currentUser?.first_name}!</h1> : null}
-            <SpecialistClientCard/>
+            {client?.map( student =><SpecialistClientCard/>)}
             <SpecialistClientTable/>
         </div>
     )
