@@ -9,22 +9,16 @@ import SchoolApptContainer from "./SchoolApptContainer";
 
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentUser, setCurrentUser] = useState(false)
   // const [currentUser, setCurrentUser] = useState(false)
 
-  // const updateUser = (user) => setCurrentUser(user)
+  const updateUser = (user) => setCurrentUser(user)
 
-  useEffect(() => {
-    fetch("/hello")
-      .then((r) => r.json())
-      .then((data) => setCount(data.count));
-  }, []);
 
   return (
     <div className="App">
-      <h1>Page Count: {count}</h1>
-      <NavBar/>
-      <Login/>
+      <NavBar currentUser={currentUser} updateUser={updateUser}/>
+      <Login updateUser={updateUser}/>
       <SignUp/>
       <SpecialistContainer/>
       <ClientContainer/>

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     def create
         user = Specialist.find_by(username: params[:username])
         if user&.authenticate(params[:password])
-            session[:user_id] = user.id
+            session[:specialist_id] = user.id
             render json: user
         
         else
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
     #for logout feature
     def destroy
-        session.delete :user_id
+        session.delete :specialist_id
         head :no_content
     end
 end

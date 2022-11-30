@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 function NavBar(currentUser, updateUser){
 
   const handleLogOut = () => {
-      fetch(`/Logout`, {
+      fetch(`/logout`, {
         method:"DELETE"
       })
       .then(res =>{
