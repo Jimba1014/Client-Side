@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -39,12 +40,14 @@ function App() {
     <div className="App">
       <NavBar currentUser={currentUser} updateUser={updateUser} testVariable setTestVariable/>
       {currentUser ? <h1>Welcome {currentUser.first_name}!</h1> : null}
-      <Login updateUser={updateUser}/>
-      <SignUp/>
-      <SpecialistContainer/>
-      <ClientContainer/>
-      <HomeApptContainer/>
-      <SchoolApptContainer/>
+      <Routes>
+        <Route exact path= "/" element={<Login updateUser={updateUser}/>}/>
+        <Route path="/signup" element={<SignUp/>}/>
+        <Route path="/home" element={<SpecialistContainer/>}/>
+        <Route path="/Clients" element={<ClientContainer/>}/>
+        <Route path="/Appointments" element={<SchoolApptContainer/>}/>
+        <Route path="/Home_Visits" element={<HomeApptContainer/>}/>
+      </Routes>
     </div>
   );
 }

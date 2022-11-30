@@ -1,10 +1,13 @@
-import React, {useState} from 'react'
-import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
+import React, {useState} from 'react';
+import { useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 function Login({updateUser}){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  let navigate = useNavigate()
 
 
   function onSubmit(e){
@@ -22,6 +25,7 @@ function Login({updateUser}){
     .then(r => {
       if(r.ok){
         r.json().then(user => {
+          navigate('/home')
           updateUser(user)
         })
       } else {
