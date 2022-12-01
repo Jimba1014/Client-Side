@@ -35,7 +35,8 @@ function Login({updateUser}){
 
 
     return (
-      <div>
+      <div className='formContainer'>
+        <h4>Please Log into your Account</h4>
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>UserName</Form.Label>
@@ -51,6 +52,8 @@ function Login({updateUser}){
         </Button>
       </Form>
       {errors? <div className='errors'>{errors}</div>:null}
+      <h5>Are You New to the Company?</h5>
+      <Button variant="primary">Create a new Account</Button>
       </div>
     )
 }

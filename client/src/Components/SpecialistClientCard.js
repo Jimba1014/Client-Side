@@ -1,6 +1,8 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import React, {useEffect, useState } from "react"
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Popover from 'react-bootstrap/Popover';
 
 function SpecialistClientCard({client}){
 
@@ -10,23 +12,33 @@ function SpecialistClientCard({client}){
         setShowText(r => !r)
     }
 
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Header as="h3">Client Strategy</Popover.Header>
+          <Popover.Body>
+            {client.strategy.description}
+          </Popover.Body>
+        </Popover>
+      );
 
     return(
         <div>
-            <Card style={{ width: '30rem' }}>
+            <Card style={{ width: '25rem' }}>
                 <Card.Body>
                     <Card.Title>{client.name}</Card.Title>
                     <Card.Subtitle> Parents/Guardians: </Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">{client.parent_first}</Card.Subtitle>
+                    <Card.Subtitle className="mb-1 text-muted">{client.parent_first}</Card.Subtitle>
                     <Card.Subtitle className="mb-2 text-muted">{client.parent_second}</Card.Subtitle>
                     <Card.Subtitle> Parental Status</Card.Subtitle>
-                    <Card.Subtitle className="mb-2 text-muted">{client.parental_status}</Card.Subtitle>
+                    <Card.Subtitle className="mb-1 text-muted">{client.parental_status}</Card.Subtitle>
                     <Card.Text>
                     Some quick example text to build on the card title and make up the
                     bulk of the card's content.
                     </Card.Text>
-                    <Button onClick={showStrategy} variant="outline-primary">{showText? " Show Strategy " : "Show Less"}</Button>{' '}
-                    <Card.Subtitle> Important Documents: </Card.Subtitle>
+                    <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+                        <Button onClick={showStrategy} variant="outline-primary">{showText? " Show Strategy " : "Show Less"}</Button>
+                    </OverlayTrigger>
+                    <Card.Subtitle className='startingText'> Important Documents: </Card.Subtitle>
                     <Card.Link href="#">Card Link</Card.Link>
                     <Card.Link href="#">Another Link</Card.Link>
                 </Card.Body>
