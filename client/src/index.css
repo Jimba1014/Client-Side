@@ -23,6 +23,17 @@ code {
   margin-bottom: 10%;
 }
 
+.clientsContainer{
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 300px;
+  row-gap: 100px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10%;
+}
+
 .entireContainer{
   padding: 20px
 }

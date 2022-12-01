@@ -44,7 +44,7 @@ function App() {
         <Route exact path= "/" element={<Login updateUser={updateUser}/>}/>
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/home" element={<SpecialistContainer currentUser={currentUser} clients={currentUser?.clients}/>}/>
-        <Route path="/Clients" element={<ClientContainer/>}/>
+        <Route path="/Clients" element={<ClientContainer currentUser={currentUser}/>}/>
         <Route path="/Appointments" element={<SchoolApptContainer currentUser={currentUser} clients={currentUser?.clients} />}/>
         <Route path="/Home_Visits" element={<HomeApptContainer currentUser={currentUser} />}/>
       </Routes>
