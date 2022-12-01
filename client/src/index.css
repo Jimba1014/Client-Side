@@ -13,11 +13,11 @@ code {
 }
 
 .specialistContainer{
-  padding: 10px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 200px;
-  row-gap: 300px;
+  row-gap: 250px;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 10%;
@@ -25,6 +25,11 @@ code {
 
 .entireContainer{
   padding: 20px
+}
+.apptContainer{
+  padding: 40px;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .formContainer{
@@ -35,4 +40,15 @@ code {
 
 .startingText{
   padding-top: 7px;
+}
+
+.clientCard{
+  box-shadow: 5px 5px 13px 2px rgba(0, 7, 73, 0.75);
+-webkit-box-shadow: 5px 5px 13px 2px rgba(0, 7, 73, 0.75);
+-moz-box-shadow: 5px 5px 13px 2px rgba(0, 7, 73, 0.75);
+}
+.table{
+  padding-right: 15%;
+  padding-left: 10%;
+  padding-bottom: 200px;
 }

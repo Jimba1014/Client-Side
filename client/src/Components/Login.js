@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Alert from 'react-bootstrap/Alert';
+
 function Login({updateUser}){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -51,6 +53,7 @@ function Login({updateUser}){
           Log In
         </Button>
       </Form>
+      {/* {errors ? <div><Alert variant='danger'>{errors}</Alert></div> : null} */}
       {errors? <div className='errors'>{errors}</div>:null}
       <h5>Are You New to the Company?</h5>
       <Button variant="primary">Create a new Account</Button>

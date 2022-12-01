@@ -23,7 +23,7 @@ function SpecialistClientCard({client}){
 
     return(
         <div>
-            <Card style={{ width: '25rem' }}>
+            <Card style={{ width: '25rem'}} className="clientCard">
                 <Card.Body>
                     <Card.Title>{client.name}</Card.Title>
                     <Card.Subtitle> Parents/Guardians: </Card.Subtitle>
@@ -32,8 +32,7 @@ function SpecialistClientCard({client}){
                     <Card.Subtitle> Parental Status</Card.Subtitle>
                     <Card.Subtitle className="mb-1 text-muted">{client.parental_status}</Card.Subtitle>
                     <Card.Text>
-                    Some quick example text to build on the card title and make up the
-                    bulk of the card's content.
+                    Sample Text
                     </Card.Text>
                     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
                         <Button onClick={showStrategy} variant="outline-primary">{showText? " Show Strategy " : "Show Less"}</Button>

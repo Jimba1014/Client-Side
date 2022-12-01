@@ -42,7 +42,7 @@ function SpecialistContainer({currentUser}){
         <div className="specialistContainer">
           {individualClient}
         </div>
-      <div className="entireContainer">
+      <div className="table">
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -58,7 +58,7 @@ function SpecialistContainer({currentUser}){
             {clientTableEntries}
           </tbody>
         </Table>
-        </div>
+      </div>
     </div>
     )
 }

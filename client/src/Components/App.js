@@ -45,8 +45,8 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/home" element={<SpecialistContainer currentUser={currentUser} clients={currentUser?.clients}/>}/>
         <Route path="/Clients" element={<ClientContainer/>}/>
-        <Route path="/Appointments" element={<SchoolApptContainer/>}/>
-        <Route path="/Home_Visits" element={<HomeApptContainer/>}/>
+        <Route path="/Appointments" element={<SchoolApptContainer currentUser={currentUser} clients={currentUser?.clients} />}/>
+        <Route path="/Home_Visits" element={<HomeApptContainer currentUser={currentUser} />}/>
       </Routes>
     </div>
   );
