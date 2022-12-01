@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.specialistContainer{
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 200px;
+  row-gap: 300px;
+  margin-left: 5%;
+  margin-bottom: 15%;
+}
+
+.entireContainer{
+  padding: 20px
+}

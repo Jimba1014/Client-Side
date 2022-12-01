@@ -8,13 +8,12 @@ function SpecialistClientCard({client}){
 
     function showStrategy(){
         setShowText(r => !r)
-        console.log(showText)
     }
 
 
     return(
         <div>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '30rem' }}>
                 <Card.Body>
                     <Card.Title>{client.name}</Card.Title>
                     <Card.Subtitle> Parents/Guardians: </Card.Subtitle>
