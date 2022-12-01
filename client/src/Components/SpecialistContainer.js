@@ -21,10 +21,18 @@ function SpecialistContainer({currentUser}){
       },[])
 
       console.log(client)
+
+      const individualClient = client?.map( student => {
+        if (student.specialist.id === currentUser.id) {
+          return <SpecialistClientCard client={student} key={student.id}/>
+        }
+      }
+
+        )
     return(
         <div>
             {currentUser ? <h1>Welcome {currentUser?.first_name}!</h1> : null}
-            {client?.map( student =><SpecialistClientCard/>)}
+            {individualClient}
             <SpecialistClientTable/>
         </div>
     )
