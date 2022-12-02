@@ -8,6 +8,7 @@ function SchoolApptContainer({ currentUser }){
     const [specialist, setSpecialist] = useState([])
     const [appointment, setAppointment] = useState([])
 
+
     useEffect(() => {
         fetch(`/specialists/${currentUser.id}`)
         .then((res) => res.json())

@@ -42,7 +42,7 @@ function HomeApptContainer({currentUser}){
                 </tbody>
             </Table>
             
-            <HomeApptFormNew/>
+            <HomeApptFormNew currentUser={currentUser}/>
         </div>
     )
 }
