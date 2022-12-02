@@ -4,17 +4,17 @@ import React, {useEffect, useState } from "react"
 
 function HomeApptFormNew( {currentUser}){
 
-    const [client, setClient] = useState([])
+    const [appointment, setAppointment] = useState([])
 
     useEffect(() => {
-        fetch(`/clients`)
+        fetch(`/appointments`)
         .then((res) => res.json())
-        .then((data) => setClient(data))
+        .then((data) => setAppointment(data))
     },[])
 
-    const individualHApptOption = client && client?.map((student) => {
-        if (student.specialist.id === currentUser.id) {
-        return <option key={student.id}>{student?.name}</option>}
+    const individualHApptOption = appointment && appointment?.map((studentApp) => {
+        if (studentApp.specialist.id === currentUser.id) {
+        return <option key={studentApp.id}>{studentApp?.name}</option>}
     }
 
         )

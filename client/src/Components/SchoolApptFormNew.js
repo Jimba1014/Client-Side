@@ -5,15 +5,15 @@ import React, {useEffect, useState } from "react"
 
 function SchoolApptFormNew( {currentUser}){
 
-    const [client, setClient] = useState([])
+    const [hAppointments, setHAppointments] = useState([])
 
     useEffect(() => {
-        fetch(`/clients`)
+        fetch(`/h_appointments`)
         .then((res) => res.json())
-        .then((data) => setClient(data))
+        .then((data) => setHAppointments(data))
     },[])
 
-    const individualApptOption = client && client?.map((student) => {
+    const individualApptOption = hAppointments && hAppointments?.map((student) => {
         if (student.specialist.id === currentUser.id) {
         return <option key={student.id}>{student?.name}</option>}
     }
