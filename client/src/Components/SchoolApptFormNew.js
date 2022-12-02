@@ -6,6 +6,8 @@ import React, {useEffect, useState } from "react"
 function SchoolApptFormNew( {currentUser}){
 
     const [hAppointments, setHAppointments] = useState([])
+    const [newDate, setNewDate ] = useState("")
+    const [newAppClient, setNewAppClient] = useState("")
 
     useEffect(() => {
         fetch(`/h_appointments`)
@@ -13,28 +15,38 @@ function SchoolApptFormNew( {currentUser}){
         .then((data) => setHAppointments(data))
     },[])
 
-    const individualApptOption = hAppointments && hAppointments?.map((student) => {
-        if (student.specialist.id === currentUser.id) {
-        return <option key={student.id}>{student?.name}</option>}
+    const individualApptOption = hAppointments && hAppointments?.map((singleAppt) => {
+        if (singleAppt.specialist.id === currentUser.id) {
+        return <option key={singleAppt.client.id} value={singleAppt.client.id}>{singleAppt?.client.name}</option>}
     }
 
         )
+
+    function handleApptSubmit(e){
+        e.preventDefault()
+        const newAppt = {
+            client_id: newAppClient,
+            specialist_id: currentUser.id,
+            date_time: newDate
+        }
+        console.log(newAppt)
+    }
 
 
 
 
     return(
         <div className='formContainer'>
-            <Form>
+            <Form onSubmit={handleApptSubmit} >
             <Form.Group className="mb-3">
                 <Form.Label htmlFor="disabledSelect">Client</Form.Label>
-                <Form.Select>
+                <Form.Select onChange={(e) => {setNewAppClient(e.target.value)} } >
                     <option>Select...</option>
                     {individualApptOption}
                 </Form.Select>
                 <Form.Group className="mb-3">
                     <Form.Label>Date/Time</Form.Label>
-                    <Form.Control type="datetime-local"/>
+                    <Form.Control type="datetime-local" onChange={(e) => {setNewDate(e.target.value)} } />
                 </Form.Group>
             </Form.Group>
             <Button type="submit">Submit</Button>
