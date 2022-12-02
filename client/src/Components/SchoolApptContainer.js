@@ -29,23 +29,24 @@ function SchoolApptContainer({ currentUser }){
     })
 
     return(
-        <div className="apptContainer">
-            <Table striped>
-                <thead>
-                    <tr>
-                    <th>Client Name</th>
-                    <th>Appointment Time</th>
-                    <th>School Address</th>
-                    <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {individualAppt}
-                </tbody>
-            </Table>
-            <SchoolApptFormNew currentUser={currentUser}/>
-            
-
+        <div className="entireContainer">
+            <div className="apptContainer">
+                <h1>School Appointments</h1>
+                <Table striped>
+                    <thead>
+                        <tr>
+                        <th>Client Name</th>
+                        <th>Appointment Time</th>
+                        <th>School Address</th>
+                        <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {individualAppt}
+                    </tbody>
+                </Table>
+                <SchoolApptFormNew currentUser={currentUser}/>
+            </div>
         </div>
     )
 }

@@ -27,22 +27,24 @@ function HomeApptContainer({currentUser}){
     })
 
     return(
-        <div className="apptContainer">
-            <Table striped>
-                <thead>
-                    <tr>
-                    <th>Client Name</th>
-                    <th>Appointment Time</th>
-                    <th>Home Address</th>
-                    <th>Delete</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {individualHAppt}
-                </tbody>
-            </Table>
-            
-            <HomeApptFormNew currentUser={currentUser}/>
+        <div className="entireContainer">
+            <div className="apptContainer">
+                <h1>Home Visits</h1>
+                <Table striped>
+                    <thead>
+                        <tr>
+                        <th>Client Name</th>
+                        <th>Appointment Time</th>
+                        <th>Home Address</th>
+                        <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {individualHAppt}
+                    </tbody>
+                </Table>
+                <HomeApptFormNew currentUser={currentUser}/>
+            </div>
         </div>
     )
 }

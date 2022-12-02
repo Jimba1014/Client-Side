@@ -27,11 +27,12 @@ function ClientContainer( {currentUser}){
           )
   
     return(
-        <div>
-            <div className="clientsContainer">
-                {individualClient}
-            </div>
-            <ClientFormNew/>
+        <div className="entireContainer">
+          <div className="clientsContainer">
+
+            {individualClient}
+          </div>
+          <ClientFormNew/>
         </div>
     )
 }
