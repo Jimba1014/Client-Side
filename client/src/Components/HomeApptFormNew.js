@@ -4,7 +4,9 @@ import React, {useEffect, useState } from "react"
 
 function HomeApptFormNew( {currentUser}){
 
-    const [appointment, setAppointment] = useState([])
+    const [hAppointment, setAppointment] = useState([])
+    const [newDate, setNewDate ] = useState("")
+    const [newHAppClient, setNewHAppClient] = useState("")
 
     useEffect(() => {
         fetch(`/appointments`)
@@ -12,24 +14,34 @@ function HomeApptFormNew( {currentUser}){
         .then((data) => setAppointment(data))
     },[])
 
-    const individualHApptOption = appointment && appointment?.map((studentApp) => {
-        if (studentApp.specialist.id === currentUser.id) {
-        return <option key={studentApp.id}>{studentApp?.name}</option>}
+    const individualHApptOption = hAppointment && hAppointment?.map((singleHAppt) => {
+        if (singleHAppt.specialist.id === currentUser.id) {
+        return <option key={singleHAppt.id}>{singleHAppt?.client.name}</option>}
     }
 
         )
+
+        function handleHApptSubmit(e){
+            e.preventDefault()
+            const newHAppt = {
+                client_id: parseInt(newHAppClient),
+                specialist_id: currentUser.id,
+                date_time: newDate
+            }
+            console.log(newHAppt)
+        }
     return(
         <div className='formContainer'>
-            <Form>
+            <Form onSubmit={handleHApptSubmit} >
                 <Form.Group className="mb-3">
                     <Form.Label htmlFor="disabledSelect">Client</Form.Label>
-                    <Form.Select>
+                    <Form.Select onChange={(e) => {setNewHAppClient(e.target.value)} } >
                         <option>Select...</option>
                         {individualHApptOption}
                     </Form.Select>
                     <Form.Group className="mb-3">
                         <Form.Label>Date/Time</Form.Label>
-                        <Form.Control type="datetime-local"/>
+                        <Form.Control type="datetime-local" value={newDate} onChange={(e) => {setNewDate(e.target.value)} } />
                     </Form.Group>
                 </Form.Group>
                 <Button type="submit">Submit</Button>

@@ -5,17 +5,17 @@ import React, {useEffect, useState } from "react"
 
 function SchoolApptFormNew( {currentUser}){
 
-    const [hAppointments, setHAppointments] = useState([])
+    const [appointments, setAppointments] = useState([])
     const [newDate, setNewDate ] = useState("")
     const [newAppClient, setNewAppClient] = useState("")
 
     useEffect(() => {
         fetch(`/h_appointments`)
         .then((res) => res.json())
-        .then((data) => setHAppointments(data))
+        .then((data) => setAppointments(data))
     },[])
 
-    const individualApptOption = hAppointments && hAppointments?.map((singleAppt) => {
+    const individualApptOption = appointments && appointments?.map((singleAppt) => {
         if (singleAppt.specialist.id === currentUser.id) {
         return <option key={singleAppt.client.id} value={singleAppt.client.id}>{singleAppt?.client.name}</option>}
     }
@@ -25,7 +25,7 @@ function SchoolApptFormNew( {currentUser}){
     function handleApptSubmit(e){
         e.preventDefault()
         const newAppt = {
-            client_id: newAppClient,
+            client_id: parseInt(newAppClient),
             specialist_id: currentUser.id,
             date_time: newDate
         }
@@ -46,7 +46,7 @@ function SchoolApptFormNew( {currentUser}){
                 </Form.Select>
                 <Form.Group className="mb-3">
                     <Form.Label>Date/Time</Form.Label>
-                    <Form.Control type="datetime-local" onChange={(e) => {setNewDate(e.target.value)} } />
+                    <Form.Control type="datetime-local" value={newDate} onChange={(e) => {setNewDate(e.target.value)} } />
                 </Form.Group>
             </Form.Group>
             <Button type="submit">Submit</Button>
