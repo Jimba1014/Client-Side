@@ -1,7 +1,6 @@
 import Button from 'react-bootstrap/Button';
 
 function SchoolApptTable(app){
-    console.log(app.app)
 
     return(
         <tr>
@@ -9,7 +8,6 @@ function SchoolApptTable(app){
             <td>{app?.app?.date_time}</td>
             <td>{app?.app?.client?.school_address}</td>
             <td>
-                <Button variant="primary">Edit</Button>{' '}
                 <Button variant="danger">Delete</Button>{' '}
             
             </td>

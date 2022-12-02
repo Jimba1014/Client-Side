@@ -35,6 +35,10 @@ function Login({updateUser}){
     })
   }
 
+  function goToSignup(){
+    navigate('/signup')
+  }
+
 
     return (
       <div className='formContainer'>
@@ -56,7 +60,7 @@ function Login({updateUser}){
       {/* {errors ? <div><Alert variant='danger'>{errors}</Alert></div> : null} */}
       {errors? <div className='errors'>{errors}</div>:null}
       <h5>Are You New to the Company?</h5>
-      <Button variant="primary">Create a new Account</Button>
+      <Button variant="primary" onClick={goToSignup}>Create a new Account</Button>
       </div>
     )
 }

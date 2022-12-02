@@ -20,7 +20,6 @@ function SchoolApptContainer({ currentUser }){
         .then((data) => setAppointment(data))
     },[])
 
-    // console.log(appointment)
 
     const individualAppt = appointment?.map( app => {
         if (app?.specialist.id === currentUser.id) {
@@ -36,14 +35,14 @@ function SchoolApptContainer({ currentUser }){
                     <th>Client Name</th>
                     <th>Appointment Time</th>
                     <th>School Address</th>
-                    <th>Edit/Delete</th>
+                    <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
                     {individualAppt}
                 </tbody>
             </Table>
-            <SchoolApptFormNew/>
+            <SchoolApptFormNew currentUser={currentUser}/>
             
 
         </div>

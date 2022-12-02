@@ -34,7 +34,7 @@ function HomeApptContainer({currentUser}){
                     <th>Client Name</th>
                     <th>Appointment Time</th>
                     <th>Home Address</th>
-                    <th>Edit/Delete</th>
+                    <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
