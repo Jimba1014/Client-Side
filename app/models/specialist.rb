@@ -6,4 +6,7 @@ class Specialist < ApplicationRecord
     has_many :rbts, through: :clients
     has_many :doctors, through: :clients
     has_many :h_appointments, through: :clients
+
+    validates :first_name, :last_name, :username, :password_digest, presence: true
+    validates :username, uniqueness: true
 end

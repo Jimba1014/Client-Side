@@ -24,6 +24,7 @@ function SchoolApptContainer({ currentUser }){
 
     const individualAppt = appointment?.map( app => {
         if (app?.specialist.id === currentUser.id) {
+            // return console.log(app.id)
             return <SchoolApptTable app={app} key={app.id}/>
         }
     })
