@@ -9,7 +9,7 @@ class AppointmentsController < ApplicationController
     end
 
     def create
-        render json: appointment_params, status: :created
+        render json: Appointment.create!(appointment_params) , status: :created
     end
 
     def destroy

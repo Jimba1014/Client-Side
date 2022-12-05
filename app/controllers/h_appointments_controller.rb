@@ -9,7 +9,7 @@ class HAppointmentsController < ApplicationController
     end
 
     def create
-        render json: h_appointment_params, status: :created
+        render json: HAppointment.create!(h_appointment_params), status: :created
     end
 
     def destroy
