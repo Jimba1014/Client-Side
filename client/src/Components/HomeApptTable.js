@@ -1,13 +1,22 @@
 import Button from 'react-bootstrap/Button';
 
-function HomeApptTable(happ){
+function HomeApptTable({happ, deleteHAppt}){
+
+    function handleDeleteAppt(){
+        fetch(`/h_appointments/${happ.id}`, {
+            method: "DELETE"
+        })
+        deleteHAppt(happ)
+
+    }
+
     return(
         <tr>
-            <td>{happ?.happ?.client?.name}</td>
-            <td>{happ?.happ?.date_time}</td>
-            <td>{happ?.happ?.client?.home_address}</td>
+            <td>{happ?.client?.name}</td>
+            <td>{happ?.date_time}</td>
+            <td>{happ?.client?.home_address}</td>
             <td>
-                <Button variant="danger">Delete</Button>{' '}
+                <Button variant="danger" onClick={handleDeleteAppt}>Delete</Button>{' '}
             </td>
         </tr>
     )

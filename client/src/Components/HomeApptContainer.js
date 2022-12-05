@@ -22,13 +22,18 @@ function HomeApptContainer({currentUser}){
 
     const individualHAppt = hAppointments?.map( happ => {
         if (happ?.specialist.id === currentUser.id) {
-            return <HomeApptTable happ={happ} key={happ.id}/>
+            return <HomeApptTable happ={happ} key={happ.id} deleteHAppt={deleteHAppt}/>
         }
     })
 
     function addNewHAppointment (newApptObj){
         setHAppointments(prev => [...prev, newApptObj])
       }
+
+    function deleteHAppt(deletedHAppt){
+        const updatedHAppts = hAppointments.filter((hAppt) => hAppt.id !== deletedHAppt.id);
+        setHAppointments(updatedHAppts)
+    }
 
     return(
         <div className="entireContainer">
