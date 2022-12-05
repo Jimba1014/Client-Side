@@ -23,11 +23,25 @@ code {
   margin-bottom: 10%;
 }
 
+.editCard{
+  margin-left: 10%;
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-auto-rows: 100px;
+}
+
+.editContainer{
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
 .clientsContainer{
   padding-top: 50px;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 300px;
+  column-gap: 10%;
   row-gap: 100px;
   margin-left: 10%;
   margin-right: 10%;
