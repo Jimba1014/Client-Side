@@ -6,7 +6,7 @@ import React, {useEffect, useState } from "react"
 function HomeApptContainer({currentUser}){
 
     const [specialist, setSpecialist] = useState([])
-    const [hAppointment, setHAppointment] = useState([])
+    const [hAppointments, setHAppointments] = useState([])
 
     useEffect(() => {
         fetch(`/specialists/${currentUser.id}`)
@@ -17,14 +17,18 @@ function HomeApptContainer({currentUser}){
     useEffect(() => {
         fetch(`/h_appointments`)
         .then((res) => res.json())
-        .then((data) => setHAppointment(data))
+        .then((data) => setHAppointments(data))
     },[])
 
-    const individualHAppt = hAppointment?.map( happ => {
+    const individualHAppt = hAppointments?.map( happ => {
         if (happ?.specialist.id === currentUser.id) {
             return <HomeApptTable happ={happ} key={happ.id}/>
         }
     })
+
+    function addNewHAppointment (newApptObj){
+        setHAppointments(prev => [...prev, newApptObj])
+      }
 
     return(
         <div className="entireContainer">
@@ -43,7 +47,10 @@ function HomeApptContainer({currentUser}){
                         {individualHAppt}
                     </tbody>
                 </Table>
-                <HomeApptFormNew currentUser={currentUser}/>
+                <HomeApptFormNew 
+                    currentUser={currentUser}
+                    hAppointments={hAppointments}
+                    addNewHAppointment={addNewHAppointment}/>
             </div>
         </div>
     )
