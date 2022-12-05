@@ -40,8 +40,6 @@ function ClientContainer( {currentUser}){
         setNewRbtOpen(false)
         setNewStrategyOpen(false)
         setNewClientOpen(false)
-
-
       }
 
       function handleRbtFormOpen(){
@@ -65,7 +63,7 @@ function ClientContainer( {currentUser}){
         setNewStrategyOpen(false)
       }
 
-  
+
     return(
         <div className="entireContainer">
           <div className="editContainer">
