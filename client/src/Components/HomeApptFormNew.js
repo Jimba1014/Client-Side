@@ -16,7 +16,7 @@ function HomeApptFormNew( {currentUser}){
 
     const individualHApptOption = hAppointment && hAppointment?.map((singleHAppt) => {
         if (singleHAppt.specialist.id === currentUser.id) {
-        return <option key={singleHAppt.id}>{singleHAppt?.client.name}</option>}
+        return <option key={singleHAppt.id} value={singleHAppt.id}>{singleHAppt?.client.name}</option>}
     }
 
         )
