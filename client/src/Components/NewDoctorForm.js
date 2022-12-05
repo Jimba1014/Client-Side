@@ -2,7 +2,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from "react"
 
-function NewDoctorForm(){
+function NewDoctorForm( {setNewDoctorOpen}){
 
     const [newName, setNewName] = useState("")
     const [newPracName, setNewPracName] = useState("")
@@ -16,6 +16,7 @@ function NewDoctorForm(){
           address: newAddress
         }
         console.log(newDoctor)
+        setNewDoctorOpen(false)
       }
 
 

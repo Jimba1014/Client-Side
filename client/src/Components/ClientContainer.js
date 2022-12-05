@@ -78,10 +78,10 @@ function ClientContainer( {currentUser}){
                 </div>
               </div>
               <div>
-                {newDoctorOpen? <NewDoctorForm/> : null}
-                {newRbtOpen? <NewRbtForm/>: null}
-                {newStrategyOpen? <NewStrategyForm/>: null}
-                {newClientOpen? <ClientFormNew/>: null }
+                {newDoctorOpen? <NewDoctorForm setNewDoctorOpen={setNewDoctorOpen}/> : null}
+                {newRbtOpen? <NewRbtForm setNewRbtOpen={setNewRbtOpen}/>: null}
+                {newStrategyOpen? <NewStrategyForm setNewStrategyOpen={setNewStrategyOpen}/>: null}
+                {newClientOpen? <ClientFormNew currentUser={currentUser}/>: null }
               </div>
             </Card>
           </div>
