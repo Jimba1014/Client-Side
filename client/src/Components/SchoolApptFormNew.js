@@ -3,24 +3,23 @@ import Button from 'react-bootstrap/Button';
 import React, {useEffect, useState } from "react"
 
 
-function SchoolApptFormNew( {currentUser}){
+function SchoolApptFormNew( {currentUser, appointments, addNewAppointment}){
 
-    const [appointments, setAppointments] = useState([])
+ 
     const [newDate, setNewDate ] = useState("")
     const [newAppClient, setNewAppClient] = useState("")
+    const [errors, setErrors] = useState([]);
 
-    useEffect(() => {
-        fetch(`/h_appointments`)
-        .then((res) => res.json())
-        .then((data) => setAppointments(data))
-    },[])
+    // const individualApptOption = appointments && appointments?.map((singleAppt) => {
+    //     if (singleAppt.specialist.id === currentUser.id) {
+    //     return <option key={singleAppt.client.id} value={singleAppt.client.id}>{singleAppt?.client.name}</option>}
+    // }
 
-    const individualApptOption = appointments && appointments?.map((singleAppt) => {
-        if (singleAppt.specialist.id === currentUser.id) {
-        return <option key={singleAppt.client.id} value={singleAppt.client.id}>{singleAppt?.client.name}</option>}
-    }
-
-        )
+    //     )
+    
+        const individualApptOption2 = currentUser.clients && currentUser.clients.map((singleAppt) => {
+            return <option key={singleAppt.id} value={singleAppt.id}>{singleAppt?.name}</option>
+        })
 
     function handleApptSubmit(e){
         e.preventDefault()
@@ -29,7 +28,20 @@ function SchoolApptFormNew( {currentUser}){
             specialist_id: currentUser.id,
             date_time: newDate
         }
-        console.log(newAppt)
+        fetch("appointments", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newAppt)
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then((data) => {
+                    addNewAppointment(data)
+                    console.log(newAppt)
+                })
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
+        })
     }
 
 
@@ -42,7 +54,7 @@ function SchoolApptFormNew( {currentUser}){
                 <Form.Label htmlFor="disabledSelect">Client</Form.Label>
                 <Form.Select onChange={(e) => {setNewAppClient(e.target.value)} } >
                     <option>Select...</option>
-                    {individualApptOption}
+                    {individualApptOption2}
                 </Form.Select>
                 <Form.Group className="mb-3">
                     <Form.Label>Date/Time</Form.Label>
@@ -51,6 +63,7 @@ function SchoolApptFormNew( {currentUser}){
             </Form.Group>
             <Button type="submit">Submit</Button>
             </Form>
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 }

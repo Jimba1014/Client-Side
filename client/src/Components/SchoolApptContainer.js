@@ -6,7 +6,7 @@ import React, {useEffect, useState } from "react"
 function SchoolApptContainer({ currentUser }){
 
     const [specialist, setSpecialist] = useState([])
-    const [appointment, setAppointment] = useState([])
+    const [appointments, setAppointments] = useState([])
 
 
     useEffect(() => {
@@ -18,16 +18,28 @@ function SchoolApptContainer({ currentUser }){
     useEffect(() => {
         fetch(`/appointments`)
         .then((res) => res.json())
-        .then((data) => setAppointment(data))
+        .then((data) => setAppointments(data))
     },[])
 
 
-    const individualAppt = appointment?.map( app => {
+        const individualAppt = appointments?.map( app => {
         if (app?.specialist.id === currentUser.id) {
             // return console.log(app.id)
-            return <SchoolApptTable app={app} key={app.id}/>
+            return <SchoolApptTable app={app} key={app.id} deleteAppt={deleteAppt}/>
         }
     })
+
+    function addNewAppointment(newApptObj){
+        setAppointments(prev => [...prev, newApptObj])
+    }
+
+    function deleteAppt(deletedAppt){
+        const updatedAppts = appointments.filter((app) => app.id !== deletedAppt.id);
+        setAppointments(updatedAppts)
+    }
+
+
+
 
     return(
         <div className="entireContainer">
@@ -46,7 +58,10 @@ function SchoolApptContainer({ currentUser }){
                         {individualAppt}
                     </tbody>
                 </Table>
-                <SchoolApptFormNew currentUser={currentUser}/>
+                <SchoolApptFormNew 
+                    currentUser={currentUser}
+                    appointments={appointments}
+                    addNewAppointment={addNewAppointment}/>
             </div>
         </div>
     )

@@ -10,6 +10,8 @@ function HomeApptTable({happ, deleteHAppt}){
 
     }
 
+    // console.log(happ)
+
     return(
         <tr>
             <td>{happ?.client?.name}</td>

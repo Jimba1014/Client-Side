@@ -10,9 +10,13 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
     const [errors, setErrors] = useState([]);
 
 
-    const individualHApptOption = hAppointments && hAppointments?.map((singleHAppt) => {
-        if (singleHAppt.specialist.id === currentUser.id) {
-        return <option key={singleHAppt.id} value={singleHAppt.id}>{singleHAppt?.client.name}</option>}
+    // const individualHApptOption = hAppointments && hAppointments?.map((singleHAppt) => {
+    //     if (singleHAppt.specialist.id === currentUser.id) {
+    //     return <option key={singleHAppt.id} value={singleHAppt.id}>{singleHAppt?.client.name}</option>}
+    // };
+
+    const individualHApptOption2 = currentUser.clients && currentUser.clients.map((singleHAppt) => {
+        return <option key={singleHAppt.id} value={singleHAppt.id}>{singleHAppt?.name}</option>
     }
 
         )
@@ -46,7 +50,7 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
                     <Form.Label htmlFor="disabledSelect">Client</Form.Label>
                     <Form.Select onChange={(e) => {setNewHAppClient(e.target.value)} } >
                         <option>Select...</option>
-                        {individualHApptOption}
+                        {individualHApptOption2}
                     </Form.Select>
                     <Form.Group className="mb-3">
                         <Form.Label>Date/Time</Form.Label>

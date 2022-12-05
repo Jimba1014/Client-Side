@@ -37,7 +37,6 @@ function App() {
 
 
 
-
   return (
     <div className="App">
       <NavBar currentUser={currentUser} updateUser={updateUser} testVariable setTestVariable/>

@@ -1,6 +1,15 @@
 import Button from 'react-bootstrap/Button';
 
-function SchoolApptTable(app){
+function SchoolApptTable(app, deleteAppt){
+
+    function handleDeleteAppt(){
+        fetch(`/appointments/${app.app.id}`, {
+            method: "DELETE"
+        })
+        deleteAppt(app)
+    }
+
+    // console.log(app)
 
     return(
         <tr>
@@ -8,7 +17,7 @@ function SchoolApptTable(app){
             <td>{app?.app?.date_time}</td>
             <td>{app?.app?.client?.school_address}</td>
             <td>
-                <Button variant="danger">Delete</Button>{' '}
+                <Button variant="danger" onClick={handleDeleteAppt}>Delete</Button>{' '}
             
             </td>
         </tr>
