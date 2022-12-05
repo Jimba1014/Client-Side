@@ -68,9 +68,9 @@ function ClientContainer( {currentUser}){
         <div className="entireContainer">
           <div className="editContainer">
             <Card>
-              <Card.Header>Edit Clients</Card.Header>
+              <Card.Header as="h5">Edit Clients</Card.Header>
               <div className="editCard">
-                <div>
+                <div className="clientButtons">
                 <Button variant="outline-primary" onClick={handleDoctorFormOpen}>Add New Doctor</Button>{' '}
                 <Button variant="outline-primary" onClick={handleRbtFormOpen}>Add New Rbt</Button>{' '}
                 <Button variant="outline-primary" onClick={handleNewStratFormOpen}>Add New Strategy</Button>{' '}
