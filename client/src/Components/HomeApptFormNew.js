@@ -7,6 +7,7 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
 
     const [newDate, setNewDate ] = useState("")
     const [newHAppClient, setNewHAppClient] = useState("")
+    const [errors, setErrors] = useState([]);
 
 
     const individualHApptOption = hAppointments && hAppointments?.map((singleHAppt) => {
@@ -23,7 +24,20 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
                 specialist_id: currentUser.id,
                 date_time: newDate
             }
-            console.log(newHAppt)
+            fetch('/h_appointments', {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(newHAppt)
+            }).then((r) => {
+                if(r.ok) {
+                    r.json().then((data) => {
+                        addNewHAppointment(data)
+                        console.log(newHAppt)
+                    })
+                } else {
+                    r.json().then((err) => setErrors(err.errors))
+                }
+            })
         }
     return(
         <div className='formContainer'>
@@ -41,6 +55,7 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
                 </Form.Group>
                 <Button type="submit">Submit</Button>
             </Form>
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 }
