@@ -1,20 +1,15 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import React, {useEffect, useState } from "react"
+import React, { useState } from "react"
 
-function HomeApptFormNew( {currentUser}){
+function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
 
-    const [hAppointment, setAppointment] = useState([])
+
     const [newDate, setNewDate ] = useState("")
     const [newHAppClient, setNewHAppClient] = useState("")
 
-    useEffect(() => {
-        fetch(`/appointments`)
-        .then((res) => res.json())
-        .then((data) => setAppointment(data))
-    },[])
 
-    const individualHApptOption = hAppointment && hAppointment?.map((singleHAppt) => {
+    const individualHApptOption = hAppointments && hAppointments?.map((singleHAppt) => {
         if (singleHAppt.specialist.id === currentUser.id) {
         return <option key={singleHAppt.id} value={singleHAppt.id}>{singleHAppt?.client.name}</option>}
     }

@@ -12,6 +12,7 @@ import SchoolApptContainer from "./SchoolApptContainer";
 function App() {
   const [currentUser, setCurrentUser] = useState(false)
   const [errors, setErrors] = useState(false)
+  const [hAppointments, setHAppointments] = useState([])
 
   const updateUser = (user) => setCurrentUser(user)
 
@@ -35,6 +36,16 @@ function App() {
     })
   }, []);
 
+  useEffect(() => {
+    fetch(`/appointments`)
+    .then((res) => res.json())
+    .then((data) => setHAppointments(data))
+},[])
+
+  function addNewHAppointment (newApptObj){
+    setHAppointments(prev => [...prev, newApptObj])
+  }
+
 
 
   return (
@@ -46,7 +57,10 @@ function App() {
         <Route path="/home" element={<SpecialistContainer currentUser={currentUser} clients={currentUser?.clients}/>}/>
         <Route path="/Clients" element={<ClientContainer currentUser={currentUser}/>}/>
         <Route path="/Appointments" element={<SchoolApptContainer currentUser={currentUser} clients={currentUser?.clients} />}/>
-        <Route path="/Home_Visits" element={<HomeApptContainer currentUser={currentUser} />}/>
+        <Route path="/Home_Visits" element={<HomeApptContainer 
+          currentUser={currentUser}
+          hAppointments = {hAppointments}
+          addNewHAppointment = {addNewHAppointment} />}/>
       </Routes>
     </div>
   );
