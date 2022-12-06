@@ -69,6 +69,10 @@ function ClientContainer( {currentUser}){
       setStrategies(prev => [...prev, newStratObj])
     }
 
+    function addNewClient(newClientObj){
+      setClient(prev => [...prev, newClientObj])
+    }
+
     function handleDoctorFormOpen(){
       setNewDoctorOpen(prev => !prev)
       setNewRbtOpen(false)
@@ -124,7 +128,9 @@ function ClientContainer( {currentUser}){
                   currentUser={currentUser}
                   doctors={doctors}
                   rbts={rbts}
-                  strategies={strategies}/>: null }
+                  strategies={strategies}
+                  addNewClient={addNewClient}
+                  setNewClientOpen={setNewClientOpen}/>: null }
               </div>
             </Card>
           </div>

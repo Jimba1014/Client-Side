@@ -9,7 +9,7 @@ class ClientsController < ApplicationController
     end
 
     def create
-        render json: client_params, status: :created
+        render json: Client.create!(client_params), status: :created
     end
 
     def destroy

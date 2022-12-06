@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import React, {useEffect, useState } from "react"
 
-function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
+function ClientFormNew( {currentUser, doctors, rbts, strategies, addNewClient, setNewClientOpen} ){
 
 
     const [newName, setNewName] = useState("")
@@ -16,6 +16,7 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
     const [newStatus, setNewStatus] = useState("")
     const [newHomeAddress, setNewHomeAddress] = useState("")
     const [newSchoolAddress, setNewSchoolAddress] = useState("")
+    const [errors, setErrors] = useState([])
 
     const individualDoctor = doctors.map( singleDoc => {
         return <option value={singleDoc.id} key={singleDoc.id}>{singleDoc.name}</option>
@@ -43,7 +44,20 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
             home_address: newHomeAddress,
             school_address: newSchoolAddress
         }
-        console.log(newClient)
+        fetch('/clients', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newClient)
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then((data) => {
+                    addNewClient(data)
+                })
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
+        })
+        setNewClientOpen(false)
     }
 
 
@@ -132,12 +146,11 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
                         onChange={(e) => {setNewHomeAddress(e.target.value)} }/>
                 </Form.Group>
 
-
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
-
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 }
