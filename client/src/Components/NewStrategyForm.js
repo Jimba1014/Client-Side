@@ -2,10 +2,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from "react"
 
-function NewStrategyForm({setNewStrategyOpen}){
+function NewStrategyForm({setNewStrategyOpen, addNewStrategy}){
 
     const [newStratName, setNewStratName] = useState("")
     const [newDes, setNewDes] = useState("")
+    const [errors, setErrors] = useState([])
 
 
     function handleStrategySubmit(e){
@@ -14,7 +15,19 @@ function NewStrategyForm({setNewStrategyOpen}){
             name: newStratName,
             description: newDes
         }
-        console.log(newStrategy)
+        fetch('strategies', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newStrategy)
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then((data) => {
+                    addNewStrategy(data)
+                })
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
+        })
         setNewStrategyOpen(false)
     }
     return(
@@ -39,6 +52,7 @@ function NewStrategyForm({setNewStrategyOpen}){
                     Submit
                 </Button>
             </Form>
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 }

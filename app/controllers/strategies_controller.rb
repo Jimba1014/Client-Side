@@ -8,7 +8,7 @@ class StrategiesController < ApplicationController
     end
 
     def create
-        render json: strat_params, status: :created
+        render json: Strategy.create!(strat_params), status: :created
     end
 
     private

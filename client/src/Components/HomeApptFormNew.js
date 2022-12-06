@@ -36,7 +36,6 @@ function HomeApptFormNew( {currentUser, hAppointments, addNewHAppointment}){
                 if(r.ok) {
                     r.json().then((data) => {
                         addNewHAppointment(data)
-                        console.log(newHAppt)
                     })
                 } else {
                     r.json().then((err) => setErrors(err.errors))

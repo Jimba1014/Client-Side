@@ -65,6 +65,10 @@ function ClientContainer( {currentUser}){
       setRbts(prev => [...prev, newRbtObj])
     }
 
+    function addNewStrategy(newStratObj){
+      setStrategies(prev => [...prev, newStratObj])
+    }
+
     function handleDoctorFormOpen(){
       setNewDoctorOpen(prev => !prev)
       setNewRbtOpen(false)
@@ -113,7 +117,9 @@ function ClientContainer( {currentUser}){
                 {newRbtOpen? <NewRbtForm 
                   setNewRbtOpen={setNewRbtOpen}
                   addNewRbt = {addNewRbt}/>: null}
-                {newStrategyOpen? <NewStrategyForm setNewStrategyOpen={setNewStrategyOpen}/>: null}
+                {newStrategyOpen? <NewStrategyForm
+                  setNewStrategyOpen={setNewStrategyOpen}
+                  addNewStrategy ={addNewStrategy}/>: null}
                 {newClientOpen? <ClientFormNew 
                   currentUser={currentUser}
                   doctors={doctors}
