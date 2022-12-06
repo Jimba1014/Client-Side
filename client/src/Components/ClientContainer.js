@@ -16,53 +16,78 @@ function ClientContainer( {currentUser}){
     const [newStrategyOpen, setNewStrategyOpen] = useState(false)
     const [newClientOpen, setNewClientOpen] = useState(false)
 
+    const [doctors, setDoctors] = useState([])
+    const [rbts, setRbts] = useState([])
+    const [strategies, setStrategies] = useState([])
+
     useEffect(() => {
         fetch(`/specialists/${currentUser.id}`)
         .then((res) => res.json())
         .then((data) => setSpecialist(data))
       },[currentUser])
   
-      useEffect(() => {
-        fetch(`/clients`)
+    useEffect(() => {
+      fetch(`/clients`)
+      .then((res) => res.json())
+      .then((data) => setClient(data))
+    },[])
+
+    useEffect(() => {
+      fetch(`/doctors`)
+      .then((res) => res.json())
+      .then((data) => setDoctors(data))
+    },[])
+
+    useEffect(() => {
+        fetch(`/rbts`)
         .then((res) => res.json())
-        .then((data) => setClient(data))
-      },[])
+        .then((data) => setRbts(data))
+    },[])
 
-      const individualClient = client?.map( student => {
-        if (student.specialist.id === currentUser.id) {
-          return <ClientCard client={student} key={student.id} currentUser={currentUser}/>
-        }
-      }
-          )
-      
-      function handleDoctorFormOpen(){
-        setNewDoctorOpen(prev => !prev)
-        setNewRbtOpen(false)
-        setNewStrategyOpen(false)
-        setNewClientOpen(false)
-      }
+    useEffect(() => {
+        fetch(`/strategies`)
+        .then((res) => res.json())
+        .then((data) => setStrategies(data))
+    },[])
 
-      function handleRbtFormOpen(){
-        setNewRbtOpen(prev => !prev)
-        setNewDoctorOpen(false)
-        setNewStrategyOpen(false)
-        setNewClientOpen(false)
+    const individualClient = client?.map( student => {
+      if (student.specialist.id === currentUser.id) {
+        return <ClientCard client={student} key={student.id} currentUser={currentUser}/>
       }
+    }
+        )
 
-      function handleNewStratFormOpen(){
-        setNewStrategyOpen(prev => !prev)
-        setNewDoctorOpen(false)
-        setNewRbtOpen(false)
-        setNewClientOpen(false)
-      }
+    function addNewDoctor(newDoctorObj){
+      setDoctors(prev => [...prev, newDoctorObj])
+    }
 
-      function handleNewClientFormOpen(){
-        setNewClientOpen(prev => !prev)
-        setNewDoctorOpen(false)
-        setNewRbtOpen(false)
-        setNewStrategyOpen(false)
-      }
+    function handleDoctorFormOpen(){
+      setNewDoctorOpen(prev => !prev)
+      setNewRbtOpen(false)
+      setNewStrategyOpen(false)
+      setNewClientOpen(false)
+    }
 
+    function handleRbtFormOpen(){
+      setNewRbtOpen(prev => !prev)
+      setNewDoctorOpen(false)
+      setNewStrategyOpen(false)
+      setNewClientOpen(false)
+    }
+
+    function handleNewStratFormOpen(){
+      setNewStrategyOpen(prev => !prev)
+      setNewDoctorOpen(false)
+      setNewRbtOpen(false)
+      setNewClientOpen(false)
+    }
+
+    function handleNewClientFormOpen(){
+      setNewClientOpen(prev => !prev)
+      setNewDoctorOpen(false)
+      setNewRbtOpen(false)
+      setNewStrategyOpen(false)
+    }
 
     return(
         <div className="entireContainer">
@@ -78,10 +103,16 @@ function ClientContainer( {currentUser}){
                 </div>
               </div>
               <div>
-                {newDoctorOpen? <NewDoctorForm setNewDoctorOpen={setNewDoctorOpen}/> : null}
+                {newDoctorOpen? <NewDoctorForm 
+                  setNewDoctorOpen={setNewDoctorOpen}
+                  addNewDoctor = {addNewDoctor}/> : null}
                 {newRbtOpen? <NewRbtForm setNewRbtOpen={setNewRbtOpen}/>: null}
                 {newStrategyOpen? <NewStrategyForm setNewStrategyOpen={setNewStrategyOpen}/>: null}
-                {newClientOpen? <ClientFormNew currentUser={currentUser}/>: null }
+                {newClientOpen? <ClientFormNew 
+                  currentUser={currentUser}
+                  doctors={doctors}
+                  rbts={rbts}
+                  strategies={strategies}/>: null }
               </div>
             </Card>
           </div>

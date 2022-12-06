@@ -8,7 +8,7 @@ class DoctorsController < ApplicationController
     end
 
     def create
-        render json: doctor_params, status: :created
+        render json: Doctor.create!(doctor_params), status: :created
     end
 
     private

@@ -2,22 +2,35 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from "react"
 
-function NewDoctorForm( {setNewDoctorOpen}){
+function NewDoctorForm( {setNewDoctorOpen, addNewDoctor}){
 
     const [newName, setNewName] = useState("")
     const [newPracName, setNewPracName] = useState("")
     const [newAddress, setNewAddress] = useState("")
+    const [errors, setErrors] = useState([])
 
     function handleDoctorSubmit(e){
         e.preventDefault()
         const newDoctor = {
-          name: newName,
-          practice: newPracName,
-          address: newAddress
+            name: newName,
+            practice: newPracName,
+            address: newAddress
         }
-        console.log(newDoctor)
+        fetch('/doctors', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newDoctor)
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then((data) => {
+                    addNewDoctor(data)
+                })
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
+        })
         setNewDoctorOpen(false)
-      }
+    }
 
 
     return (
@@ -49,6 +62,7 @@ function NewDoctorForm( {setNewDoctorOpen}){
                     Submit
                 </Button>
             </Form>
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 

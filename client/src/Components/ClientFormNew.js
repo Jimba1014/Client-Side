@@ -4,11 +4,8 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import React, {useEffect, useState } from "react"
 
-function ClientFormNew( currentUser ){
+function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
 
-    const [doctors, setDoctors] = useState([])
-    const [rbts, setRbts] = useState([])
-    const [strategies, setStrategies] = useState([])
 
     const [newName, setNewName] = useState("")
     const [newRbt, setNewRbt] = useState("")
@@ -19,24 +16,6 @@ function ClientFormNew( currentUser ){
     const [newStatus, setNewStatus] = useState("")
     const [newHomeAddress, setNewHomeAddress] = useState("")
     const [newSchoolAddress, setNewSchoolAddress] = useState("")
-
-    useEffect(() => {
-        fetch(`/doctors`)
-        .then((res) => res.json())
-        .then((data) => setDoctors(data))
-    },[])
-
-    useEffect(() => {
-        fetch(`/rbts`)
-        .then((res) => res.json())
-        .then((data) => setRbts(data))
-    },[])
-
-    useEffect(() => {
-        fetch(`/strategies`)
-        .then((res) => res.json())
-        .then((data) => setStrategies(data))
-    },[])
 
     const individualDoctor = doctors.map( singleDoc => {
         return <option value={singleDoc.id} key={singleDoc.id}>{singleDoc.name}</option>
