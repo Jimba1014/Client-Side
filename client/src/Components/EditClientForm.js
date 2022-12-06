@@ -45,7 +45,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
             home_address: editHomeAddress,
             school_address: editSchoolAddress,
         }
-        console.log(editClient)
+        console.log(editedClient)
     }
 
     return(
@@ -67,6 +67,8 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Rbt</Form.Label>
                     <Form.Select 
+                        onChange={(e) => {setEditRbt(e.target.value)} }
+                        defaultValue="Choose..."
                         >
                         <option>Choose...</option>
                         {individualRbt}
@@ -77,6 +79,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Doctor</Form.Label>
                     <Form.Select 
+                        onChange={(e) => {setEditDoctor(e.target.value)} }
                         defaultValue="Choose..."
                         >
                         <option>Choose...</option>
@@ -87,6 +90,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Strategy</Form.Label>
                     <Form.Select
+                        onChange={(e) => {setEditStrategy(e.target.value)} }
                         defaultValue="Choose..."
                         >
                         <option>Choose...</option>
@@ -102,6 +106,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         type='text'
                         placeholder='Parent Full Name'
                         defaultValue={editClient.parent_first}
+                        onChange={(e) => {setEditParent1(e.target.value)} }
                         />
                     </Form.Group>
 
@@ -111,6 +116,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         type='text'
                         placeholder='Parent 2 Full Name'
                         defaultValue={editClient.parent_second}
+                        onChange={(e) => {setEditParent2(e.target.value)} }
                         />
                     </Form.Group>
                 </Row>
@@ -121,6 +127,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         type='text'
                         placeholder="Together, Devorced, deceased parent, etc..."
                         defaultValue={editClient.parental_status}
+                        onChange={(e) => {setEditStatus(e.target.value)} }
                         />
                 </Form.Group>
 
@@ -130,6 +137,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         type='text'
                         placeholder="Full School Address"
                         defaultValue={editClient.school_address}
+                        onChange={(e) => {setEditSchoolAddress(e.target.value)} }
                         />
                 </Form.Group>
 
@@ -139,6 +147,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         type='text'
                         placeholder="Full Home Address"
                         defaultValue={editClient.home_address}
+                        onChange={(e) => {setEditHomeAddress(e.target.value)} }
                         />
                 </Form.Group>
 
