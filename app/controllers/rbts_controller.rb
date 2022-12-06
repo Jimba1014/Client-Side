@@ -8,7 +8,7 @@ class RbtsController < ApplicationController
     end
 
     def create
-        render json: rbt_params, status: :created
+        render json: Rbt.create!(rbt_params), status: :created
     end
 
     private

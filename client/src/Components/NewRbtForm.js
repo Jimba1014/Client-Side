@@ -2,10 +2,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from "react"
 
-function NewRbtForm({ setNewRbtOpen }){
+function NewRbtForm({ setNewRbtOpen, addNewRbt }){
 
     const [newFirstName, setNewFirstName] = useState("")
     const [newLastName, setNewLastName] = useState("")
+    const [errors, setErrors] = useState([])
 
     function handleRbtSubmit(e){
         e.preventDefault()
@@ -13,7 +14,19 @@ function NewRbtForm({ setNewRbtOpen }){
             first_name: newFirstName,
             last_name: newLastName
         }
-        console.log(newRbt)
+        fetch('/rbts', {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newRbt)
+        }).then((r) => {
+            if(r.ok) {
+                r.json().then((data) => {
+                    addNewRbt(data)
+                })
+            } else {
+                r.json().then((err) => setErrors(err.errors))
+            }
+        })
         setNewRbtOpen(false)
     }
 
@@ -42,6 +55,7 @@ function NewRbtForm({ setNewRbtOpen }){
                     Submit
                 </Button>
             </Form>
+            {errors? <div>{errors}</div>:null}
         </div>
     )
 }
