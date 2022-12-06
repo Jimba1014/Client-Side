@@ -33,7 +33,7 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies} ){
         e.preventDefault()
         const newClient = {
             name: newName,
-            specialist_id: currentUser.currentUser.id,
+            specialist_id: currentUser.id,
             rbt_id: parseInt(newRbt),
             doctor_id: parseInt(newDoctor),
             strategy_id: parseInt(newStrategy),
