@@ -50,9 +50,14 @@ function ClientContainer( {currentUser}){
         .then((data) => setStrategies(data))
     },[])
 
+    function deleteClient(deletedClient){
+      const updatedClients = client.filter((singleClient) => singleClient.id !== deletedClient.id)
+      setClient(updatedClients)
+    }
+
     const individualClient = client?.map( student => {
       if (student.specialist.id === currentUser.id) {
-        return <ClientCard client={student} key={student.id} currentUser={currentUser}/>
+        return <ClientCard client={student} key={student.id} currentUser={currentUser} deleteClient={deleteClient}/>
       }
     }
         )
