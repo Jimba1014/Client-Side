@@ -3,6 +3,7 @@ import ClientFormNew from "./ClientFormNew"
 import NewDoctorForm from './NewDoctorForm';
 import NewRbtForm from './NewRbtForm';
 import NewStrategyForm from './NewStrategyForm';
+import EditClientForm from "./EditClientForm";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React, {useEffect, useState } from "react"
@@ -15,10 +16,12 @@ function ClientContainer( {currentUser}){
     const [newRbtOpen, setNewRbtOpen] = useState(false)
     const [newStrategyOpen, setNewStrategyOpen] = useState(false)
     const [newClientOpen, setNewClientOpen] = useState(false)
+    const [editFormOpen, setEditFormOpen] = useState(false)
 
     const [doctors, setDoctors] = useState([])
     const [rbts, setRbts] = useState([])
     const [strategies, setStrategies] = useState([])
+    const [editClient, setEditClient] = useState([])
 
     useEffect(() => {
         fetch(`/specialists/${currentUser.id}`)
@@ -50,6 +53,14 @@ function ClientContainer( {currentUser}){
         .then((data) => setStrategies(data))
     },[])
 
+    function handleClientEditFormInput(id){
+        fetch(`/clients/${id}`)
+        .then((res) => res.json())
+        .then((data) => setEditClient(data))
+    }
+
+
+
     function deleteClient(deletedClient){
       const updatedClients = client.filter((singleClient) => singleClient.id !== deletedClient.id)
       setClient(updatedClients)
@@ -57,7 +68,13 @@ function ClientContainer( {currentUser}){
 
     const individualClient = client?.map( student => {
       if (student.specialist.id === currentUser.id) {
-        return <ClientCard client={student} key={student.id} currentUser={currentUser} deleteClient={deleteClient}/>
+        return <ClientCard
+          client={student}
+          key={student.id}
+          currentUser={currentUser}
+          deleteClient={deleteClient}
+          handleEditFormOpen={handleEditFormOpen}
+          handleClientEditFormInput={handleClientEditFormInput}/>
       }
     }
         )
@@ -83,6 +100,7 @@ function ClientContainer( {currentUser}){
       setNewRbtOpen(false)
       setNewStrategyOpen(false)
       setNewClientOpen(false)
+      setEditFormOpen(false)
     }
 
     function handleRbtFormOpen(){
@@ -90,6 +108,7 @@ function ClientContainer( {currentUser}){
       setNewDoctorOpen(false)
       setNewStrategyOpen(false)
       setNewClientOpen(false)
+      setEditFormOpen(false)
     }
 
     function handleNewStratFormOpen(){
@@ -97,6 +116,7 @@ function ClientContainer( {currentUser}){
       setNewDoctorOpen(false)
       setNewRbtOpen(false)
       setNewClientOpen(false)
+      setEditFormOpen(false)
     }
 
     function handleNewClientFormOpen(){
@@ -104,6 +124,16 @@ function ClientContainer( {currentUser}){
       setNewDoctorOpen(false)
       setNewRbtOpen(false)
       setNewStrategyOpen(false)
+      setEditFormOpen(false)
+    }
+
+    function handleEditFormOpen(){
+      setEditFormOpen(prev => !prev)
+      setNewDoctorOpen(false)
+      setNewRbtOpen(false)
+      setNewStrategyOpen(false)
+      setNewClientOpen(false)
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
     }
 
     return(
@@ -136,6 +166,12 @@ function ClientContainer( {currentUser}){
                   strategies={strategies}
                   addNewClient={addNewClient}
                   setNewClientOpen={setNewClientOpen}/>: null }
+                {editFormOpen? <EditClientForm 
+                    editClient={editClient}
+                    doctors={doctors}
+                    rbts={rbts}
+                    strategies={strategies}
+                    currentUser={currentUser}/> : null}
               </div>
             </Card>
           </div>

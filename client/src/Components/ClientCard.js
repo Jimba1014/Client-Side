@@ -2,13 +2,18 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function ClientCard({client, currentUser, deleteClient}){
+function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, handleClientEditFormInput}){
 
   function handleDeleteClient(){
     fetch(`/clients/${client.id}`, {
       method: "DELETE"
     })
     deleteClient(client)
+  }
+
+  function testFunction(){
+    handleEditFormOpen()
+    handleClientEditFormInput(client.id)
   }
 
     return(
@@ -21,7 +26,7 @@ function ClientCard({client, currentUser, deleteClient}){
           </Card.Text>
           <Card.Title>RBT</Card.Title>
           <Card.Text>{client.rbt.first_name} {client.rbt.last_name}</Card.Text>
-          <Button variant="primary">Edit Client Information</Button>{'   '}
+          <Button variant="primary" onClick={testFunction}>Edit Client Information</Button>{'   '}
           <Button variant="danger" onClick={handleDeleteClient}>Delete Client</Button>
         </Card.Body>
       </Card>

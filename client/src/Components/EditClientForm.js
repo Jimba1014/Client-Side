@@ -1,0 +1,153 @@
+
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import React, { useState } from "react"
+
+function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
+
+    const [editName, setEditName] = useState("")
+    const [editRbt, setEditRbt] = useState("")
+    const [editDoctor, setEditDoctor] = useState("")
+    const [editStrategy, setEditStrategy] = useState("")
+    const [editParent1, setEditParent1] = useState("")
+    const [editParent2, setEditParent2] = useState("")
+    const [editStatus, setEditStatus] = useState("")
+    const [editHomeAddress, setEditHomeAddress] = useState("")
+    const [editSchoolAddress, setEditSchoolAddress] = useState("")
+    const [errors, setErrors] = useState([])
+
+    const individualDoctor = doctors.map( singleDoc => {
+        return <option value={singleDoc.id} key={singleDoc.id}>{singleDoc.name}</option>
+    })
+
+    const individualRbt = rbts.map( singleRbt => {
+        return <option value={singleRbt.id} key={singleRbt.id}> {`${singleRbt.first_name} ${singleRbt.last_name}`}</option>
+    })
+
+    const individualStrat = strategies.map( singleStrat => {
+        return <option value={singleStrat.id} key={singleStrat.id}>{singleStrat.name}</option>
+    })
+
+    function handleClientEditSubmit(e){
+        e.preventDefault()
+        const editedClient = {
+            name: editName,
+            specialist_id: currentUser.id,
+            rbt_id: parseInt(editRbt),
+            doctor_id: parseInt(editDoctor),
+            strategy_id: parseInt(editStrategy),
+            parent_first: editParent1,
+            parent_second: editParent2,
+            parental_status: editStatus,
+            home_address: editHomeAddress,
+            school_address: editSchoolAddress,
+        }
+        console.log(editClient)
+    }
+
+    return(
+        <div className="formContainer2">
+            <h2>Edit {editClient.name}</h2>
+            <Form onSubmit={handleClientEditSubmit}>
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="Enter full legal name"
+                        defaultValue={editClient.name}
+                        onChange={(e) => {setEditName(e.target.value)} }
+                        />
+                    </Form.Group>
+                </Row>
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                    <Form.Label>Rbt</Form.Label>
+                    <Form.Select 
+                        >
+                        <option>Choose...</option>
+                        {individualRbt}
+                        
+                    </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                    <Form.Label>Doctor</Form.Label>
+                    <Form.Select 
+                        defaultValue="Choose..."
+                        >
+                        <option>Choose...</option>
+                        {individualDoctor}
+                    </Form.Select>
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                    <Form.Label>Strategy</Form.Label>
+                    <Form.Select
+                        defaultValue="Choose..."
+                        >
+                        <option>Choose...</option>
+                        {individualStrat}
+                    </Form.Select>
+                    </Form.Group>
+                </Row>
+
+                <Row className="mb-3">
+                    <Form.Group as={Col}>
+                    <Form.Label>Parent 1</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Parent Full Name'
+                        defaultValue={editClient.parent_first}
+                        />
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                    <Form.Label>Parent 2</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder='Parent 2 Full Name'
+                        defaultValue={editClient.parent_second}
+                        />
+                    </Form.Group>
+                </Row>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Parental Status</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder="Together, Devorced, deceased parent, etc..."
+                        defaultValue={editClient.parental_status}
+                        />
+                </Form.Group>
+
+                <Form.Group className="mb-3" >
+                    <Form.Label>School Address</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder="Full School Address"
+                        defaultValue={editClient.school_address}
+                        />
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                    <Form.Label>Home Address</Form.Label>
+                    <Form.Control
+                        type='text'
+                        placeholder="Full Home Address"
+                        defaultValue={editClient.home_address}
+                        />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </div>
+    )
+}
+
+export default EditClientForm
