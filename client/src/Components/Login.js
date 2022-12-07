@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 
 function Login({updateUser}){
   const [username, setUsername] = useState("");
@@ -60,8 +61,12 @@ function Login({updateUser}){
       </Form>
       {/* {errors ? <div><Alert variant='danger'>{errors}</Alert></div> : null} */}
       {errors? <div className='errors'>{errors}</div>:null}
-      <h5>Are You New to the Company?</h5>
-      <Button variant="primary" onClick={goToSignup}>Create a new Account</Button>
+      <div id='signup'>
+        <Card className="text-center" style={{ height: '6rem', padding: 10}}>
+          <h5>Are You New to the Company?</h5>
+          <Button variant="outline-primary" onClick={goToSignup}>Create a new Account</Button>
+        </Card>
+      </div>
       </div>
     )
 }

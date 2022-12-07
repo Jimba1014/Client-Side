@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
 import React, {useState} from 'react';
 import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 
 function SignUp(){
 
@@ -54,7 +55,7 @@ function SignUp(){
 
     return(
         <div className='formContainer'>
-            <h4>Create your Account</h4>
+            <h3>Create your Account</h3>
             <Form onSubmit={handleOnSignUp}>
                 <Form.Group className="mb-3">
                     <Form.Label>Company Password</Form.Label>
@@ -100,10 +101,14 @@ function SignUp(){
                     Sign Up
                 </Button>
             </Form>
-            <h5>Oops! I Already Have an Account!</h5>
-            <Button variant="primary" onClick={backToLogin}>
-                Back to Login
-            </Button>
+            <div id='signup'>
+                <Card className="text-center" style={{ height: '6rem', padding: 10}}>
+                    <h5>Oops! I Already Have an Account!</h5>
+                    <Button variant="outline-primary" onClick={backToLogin}>
+                        Back to Login
+                    </Button>
+                </Card>
+            </div>
         </div>
     )
 }

@@ -4,4 +4,6 @@ class ClientSerializer < ActiveModel::Serializer
   has_one :rbt
   has_one :doctor
   has_one :strategy
+  has_many :appointments
+  has_many :h_appointments
 end

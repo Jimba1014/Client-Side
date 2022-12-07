@@ -17,7 +17,7 @@ code {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 200px;
-  row-gap: 200px;
+  row-gap: 250px;
   margin-left: 10%;
   margin-right: 10%;
   margin-bottom: 10%;
@@ -61,7 +61,7 @@ code {
   padding: 20px;
   margin-left: 35%;
   margin-right: 35%;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 .formContainer2{
   padding: 50px;
@@ -87,6 +87,7 @@ code {
 
 
 .table{
+  padding-top: 5%;
   padding-right: 15%;
   padding-left: 10%;
   padding-bottom: 200px;
@@ -94,4 +95,9 @@ code {
 
 .clientButtons{
   margin-left: 16%;
+}
+
+#signup{
+  padding-top: 5%;
+  padding-bottom: 10%;
 }
