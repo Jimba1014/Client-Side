@@ -17,6 +17,10 @@ class ClientsController < ApplicationController
         head :no_content
     end
 
+    def update
+        render json: find_client.update!(client_params), status: :accepted
+    end
+
     private
 
     def find_client
