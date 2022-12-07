@@ -11,6 +11,11 @@ class StrategiesController < ApplicationController
         render json: Strategy.create!(strat_params), status: :created
     end
 
+    def destroy
+        find_strat.destroy
+        head :no_content
+    end
+
     private
 
     def find_strat

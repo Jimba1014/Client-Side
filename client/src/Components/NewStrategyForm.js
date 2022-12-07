@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import React, { useState } from "react"
+import Alert from 'react-bootstrap/Alert';
 
 function NewStrategyForm({setNewStrategyOpen, addNewStrategy}){
 
@@ -23,12 +24,13 @@ function NewStrategyForm({setNewStrategyOpen, addNewStrategy}){
             if(r.ok) {
                 r.json().then((data) => {
                     addNewStrategy(data)
+                    setNewStrategyOpen(false)
                 })
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
         })
-        setNewStrategyOpen(false)
+        
     }
     return(
         <div className='formContainer2'>
@@ -52,7 +54,9 @@ function NewStrategyForm({setNewStrategyOpen, addNewStrategy}){
                     Submit
                 </Button>
             </Form>
-            {errors? <div>{errors}</div>:null}
+            {errors? <div><Alert key='danger' variant='danger'>{errors}
+          
+        </Alert></div>:null}
         </div>
     )
 }

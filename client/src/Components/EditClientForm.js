@@ -6,46 +6,37 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import React, { useState } from "react"
 
-function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
+function EditClientForm({editClient, doctors, rbts, strategies, currentUser, updateClient}){
 
-    const [editName, setEditName] = useState("")
-    const [editRbt, setEditRbt] = useState("")
-    const [editDoctor, setEditDoctor] = useState("")
-    const [editStrategy, setEditStrategy] = useState("")
-    const [editParent1, setEditParent1] = useState("")
-    const [editParent2, setEditParent2] = useState("")
-    const [editStatus, setEditStatus] = useState("")
-    const [editHomeAddress, setEditHomeAddress] = useState("")
-    const [editSchoolAddress, setEditSchoolAddress] = useState("")
-    const [errors, setErrors] = useState([])
+    const [clientObj, setClientObj] = useState({})
+
+    const onChangeHandler = (e) => {
+        setClientObj({ ...clientObj, [e.target.name]: e.target.value})
+    }
 
     const individualDoctor = doctors.map( singleDoc => {
-        return <option value={singleDoc.id} name="doctor_id" key={singleDoc.id}>{singleDoc.name}</option>
+        return <option value={singleDoc.id} key={singleDoc.id}>{singleDoc.name}</option>
     })
 
     const individualRbt = rbts.map( singleRbt => {
-        return <option value={singleRbt.id} name="rbt_id" key={singleRbt.id}> {`${singleRbt.first_name} ${singleRbt.last_name}`}</option>
+        return <option value={singleRbt.id} key={singleRbt.id}> {`${singleRbt.first_name} ${singleRbt.last_name}`}</option>
     })
 
     const individualStrat = strategies.map( singleStrat => {
-        return <option value={singleStrat.id} name="strategy_id" key={singleStrat.id}>{singleStrat.name}</option>
+        return <option value={singleStrat.id} key={singleStrat.id}>{singleStrat.name}</option>
     })
 
     function handleClientEditSubmit(e){
-        e.preventDefault()
-        const editedClient = {
-            name: editName,
-            specialist_id: currentUser.id,
-            rbt_id: parseInt(editRbt),
-            doctor_id: parseInt(editDoctor),
-            strategy_id: parseInt(editStrategy),
-            parent_first: editParent1,
-            parent_second: editParent2,
-            parental_status: editStatus,
-            home_address: editHomeAddress,
-            school_address: editSchoolAddress,
-        }
-        console.log(editedClient)
+        fetch(`/clients/${editClient.id}`, {
+            method: "PATCH",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(clientObj)
+        }).then((r) => r.json())
+        .then((data) => {
+            updateClient(data)
+        })
+        console.log(clientObj)
+
     }
 
     return(
@@ -58,9 +49,8 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Control
                         type="text"
                         name="name"
-                        placeholder="Enter full legal name"
                         defaultValue={editClient.name}
-                        onChange={(e) => {setEditName(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                     </Form.Group>
                 </Row>
@@ -68,8 +58,9 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Rbt</Form.Label>
                     <Form.Select 
-                        onChange={(e) => {setEditRbt(e.target.value)} }
+                        onChange={onChangeHandler}
                         defaultValue="Choose..."
+                        name="rbt_id"
                         >
                         <option>Choose...</option>
                         {individualRbt}
@@ -80,8 +71,9 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Doctor</Form.Label>
                     <Form.Select 
-                        onChange={(e) => {setEditDoctor(e.target.value)} }
+                        onChange={onChangeHandler}
                         defaultValue="Choose..."
+                        name="doctor_id"
                         >
                         <option>Choose...</option>
                         {individualDoctor}
@@ -91,8 +83,9 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                     <Form.Group as={Col}>
                     <Form.Label>Strategy</Form.Label>
                     <Form.Select
-                        onChange={(e) => {setEditStrategy(e.target.value)} }
+                        onChange={onChangeHandler}
                         defaultValue="Choose..."
+                        name="strategy_id"
                         >
                         <option>Choose...</option>
                         {individualStrat}
@@ -108,7 +101,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         name="parent_first"
                         placeholder='Parent Full Name'
                         defaultValue={editClient.parent_first}
-                        onChange={(e) => {setEditParent1(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                     </Form.Group>
 
@@ -119,7 +112,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         name="parent_second"
                         placeholder='Parent 2 Full Name'
                         defaultValue={editClient.parent_second}
-                        onChange={(e) => {setEditParent2(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                     </Form.Group>
                 </Row>
@@ -131,7 +124,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         name="parental_status"
                         placeholder="Together, Devorced, deceased parent, etc..."
                         defaultValue={editClient.parental_status}
-                        onChange={(e) => {setEditStatus(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                 </Form.Group>
 
@@ -142,7 +135,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         name="school_address"
                         placeholder="Full School Address"
                         defaultValue={editClient.school_address}
-                        onChange={(e) => {setEditSchoolAddress(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                 </Form.Group>
 
@@ -153,7 +146,7 @@ function EditClientForm({editClient, doctors, rbts, strategies, currentUser}){
                         name="home_address"
                         placeholder="Full Home Address"
                         defaultValue={editClient.home_address}
-                        onChange={(e) => {setEditHomeAddress(e.target.value)} }
+                        onChange={onChangeHandler}
                         />
                 </Form.Group>
 

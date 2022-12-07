@@ -11,6 +11,11 @@ class RbtsController < ApplicationController
         render json: Rbt.create!(rbt_params), status: :created
     end
 
+    def destroy
+        find_rbt.destroy
+        head :no_content
+    end
+
     private
 
     def find_rbt

@@ -52,12 +52,13 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies, addNewClient, s
             if(r.ok) {
                 r.json().then((data) => {
                     addNewClient(data)
+                    setNewClientOpen(false)
                 })
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
         })
-        setNewClientOpen(false)
+        
     }
 
 

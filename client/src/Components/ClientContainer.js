@@ -59,6 +59,15 @@ function ClientContainer( {currentUser}){
         .then((data) => setEditClient(data))
     }
 
+    function updateClient(updatedClient){
+      const upClient = client.map((singleClient) => {
+        if(singleClient.id === updatedClient.id){
+          return updatedClient
+        } else {
+          return singleClient
+        }
+      })
+    }
 
 
     function deleteClient(deletedClient){
@@ -171,7 +180,8 @@ function ClientContainer( {currentUser}){
                     doctors={doctors}
                     rbts={rbts}
                     strategies={strategies}
-                    currentUser={currentUser}/> : null}
+                    currentUser={currentUser}
+                    updateClient={updateClient}/> : null}
               </div>
             </Card>
           </div>
