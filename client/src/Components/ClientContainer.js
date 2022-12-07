@@ -75,7 +75,8 @@ function ClientContainer( {currentUser}){
       setClient(updatedClients)
     }
 
-    const individualClient = client?.map( student => {
+  
+    const individualClient = client?.sort( (a,b) => a.id > b.id ? 1 :-1 ).map( student => {
       if (student.specialist.id === currentUser.id) {
         return <ClientCard
           client={student}

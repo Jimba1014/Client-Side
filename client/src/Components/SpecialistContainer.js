@@ -29,7 +29,7 @@ function SpecialistContainer({currentUser}){
     }
         )
 
-    const clientTableEntries = client?.map( (student) => {
+    const clientTableEntries = client?.sort( (a,b) => a.id > b.id ? 1 :-1 ).map( (student) => {
       if (student.specialist.id === currentUser.id) {
         return <SpecialistClientTable client={student} key={student.id}/>
       }
