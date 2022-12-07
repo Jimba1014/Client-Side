@@ -13,6 +13,8 @@ class ClientsController < ApplicationController
     end
 
     def destroy
+        find_client.appointments.destroy_all
+        find_client.h_appointments.destroy_all
         find_client.destroy
         head :no_content
     end

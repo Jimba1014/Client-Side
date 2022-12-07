@@ -17,15 +17,21 @@ function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, hand
   }
 
     return(
-        <Card>
-        <Card.Header as="h5">{client?.name}</Card.Header>
+        <Card className='clientCards'>
+        <Card.Header as="h3">{client?.name}</Card.Header>
         <Card.Body>
           <Card.Title>Specialist</Card.Title>
           <Card.Text>
             {currentUser.first_name} {currentUser.last_name}
           </Card.Text>
           <Card.Title>RBT</Card.Title>
-          <Card.Text>{client.rbt.first_name} {client.rbt.last_name}</Card.Text>
+            <Card.Text>{client.rbt.first_name} {client.rbt.last_name}</Card.Text>
+          <Card.Title>Doctor</Card.Title>
+          <Card.Text>{client.doctor.name}</Card.Text>
+          <Card.Title>Home Address:</Card.Title>
+            <Card.Text>{client.home_address}</Card.Text>
+          <Card.Title>School Address:</Card.Title>
+            <Card.Text>{client.school_address}</Card.Text>
           <Button variant="primary" onClick={testFunction}>Edit Client Information</Button>{'   '}
           <Button variant="danger" onClick={handleDeleteClient}>Delete Client</Button>
         </Card.Body>
