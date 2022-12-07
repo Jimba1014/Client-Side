@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   # Signup
-  post "/signup", to: "specialist#create"
+  post "/signup", to: "specialists#create"
   get "/me", to: "specialists#me"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

@@ -1,5 +1,7 @@
 class SpecialistsController < ApplicationController
 
+    skip_before_action :authorize, only: :create
+
     def index
         render json: Specialist.all, status: :ok
     end
