@@ -50,13 +50,13 @@ function NewStrategyForm({setNewStrategyOpen, addNewStrategy}){
                         placeholder="Enter a detailed Description of this Strategy"
                         onChange={(e) => {setNewDes(e.target.value)} } />
                 </Form.Group>
+                {errors? <div className='errors'>{errors}</div>:null}
+                {/* {errors? <div><Alert key='danger' variant='danger'>{errors}</Alert></div>:null} */}
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
             </Form>
-            {errors? <div><Alert key='danger' variant='danger'>{errors}
-          
-        </Alert></div>:null}
+            
         </div>
     )
 }

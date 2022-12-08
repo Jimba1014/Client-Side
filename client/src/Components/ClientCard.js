@@ -2,7 +2,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, handleClientEditFormInput}){
+function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, handleClientEditFormInput, handleFileUploadOpen}){
 
   function handleDeleteClient(){
     fetch(`/clients/${client.id}`, {
@@ -13,6 +13,11 @@ function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, hand
 
   function testFunction(){
     handleEditFormOpen()
+    handleClientEditFormInput(client.id)
+  }
+
+  function handleButtonFileUploadOpen(){
+    handleFileUploadOpen()
     handleClientEditFormInput(client.id)
   }
 
@@ -33,6 +38,7 @@ function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, hand
           <Card.Title>School Address:</Card.Title>
             <Card.Text>{client.school_address}</Card.Text>
           <Button variant="primary" onClick={testFunction}>Edit Client Information</Button>{'   '}
+          <Button variant="info" onClick={handleButtonFileUploadOpen}>Add a file</Button>{'   '}
           <Button variant="danger" onClick={handleDeleteClient}>Delete Client</Button>
         </Card.Body>
       </Card>

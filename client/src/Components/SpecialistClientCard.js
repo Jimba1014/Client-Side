@@ -1,6 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import React, {useEffect, useState } from "react"
+import Table from 'react-bootstrap/Table';
 import moment from 'moment';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
@@ -44,8 +45,6 @@ function SpecialistClientCard({client}){
                         <Button onClick={showStrategy} variant="outline-primary">{showText? " Show Strategy " : "Show Less"}</Button>
                     </OverlayTrigger>
                     <Card.Subtitle className='startingText'> Important Documents: </Card.Subtitle>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
                 </Card.Body>
             </Card>
         </div>

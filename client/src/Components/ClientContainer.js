@@ -4,6 +4,7 @@ import NewDoctorForm from './NewDoctorForm';
 import NewRbtForm from './NewRbtForm';
 import NewStrategyForm from './NewStrategyForm';
 import EditClientForm from "./EditClientForm";
+import FileUpload from "./FileUpload";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React, {useEffect, useState } from "react"
@@ -17,6 +18,7 @@ function ClientContainer( {currentUser}){
     const [newStrategyOpen, setNewStrategyOpen] = useState(false)
     const [newClientOpen, setNewClientOpen] = useState(false)
     const [editFormOpen, setEditFormOpen] = useState(false)
+    const [newFileOpen, setNewFileOpen] = useState(false)
 
     const [doctors, setDoctors] = useState([])
     const [rbts, setRbts] = useState([])
@@ -84,7 +86,8 @@ function ClientContainer( {currentUser}){
           currentUser={currentUser}
           deleteClient={deleteClient}
           handleEditFormOpen={handleEditFormOpen}
-          handleClientEditFormInput={handleClientEditFormInput}/>
+          handleClientEditFormInput={handleClientEditFormInput}
+          handleFileUploadOpen={handleFileUploadOpen}/>
       }
     }
         )
@@ -111,6 +114,7 @@ function ClientContainer( {currentUser}){
       setNewStrategyOpen(false)
       setNewClientOpen(false)
       setEditFormOpen(false)
+      setNewFileOpen(false)
     }
 
     function handleRbtFormOpen(){
@@ -119,6 +123,7 @@ function ClientContainer( {currentUser}){
       setNewStrategyOpen(false)
       setNewClientOpen(false)
       setEditFormOpen(false)
+      setNewFileOpen(false)
     }
 
     function handleNewStratFormOpen(){
@@ -127,6 +132,7 @@ function ClientContainer( {currentUser}){
       setNewRbtOpen(false)
       setNewClientOpen(false)
       setEditFormOpen(false)
+      setNewFileOpen(false)
     }
 
     function handleNewClientFormOpen(){
@@ -135,10 +141,21 @@ function ClientContainer( {currentUser}){
       setNewRbtOpen(false)
       setNewStrategyOpen(false)
       setEditFormOpen(false)
+      setNewFileOpen(false)
     }
 
     function handleEditFormOpen(){
       setEditFormOpen(prev => !prev)
+      setNewDoctorOpen(false)
+      setNewRbtOpen(false)
+      setNewStrategyOpen(false)
+      setNewClientOpen(false)
+      setNewFileOpen(false)
+      window.scrollTo({top: 0, left: 0, behavior: 'smooth'})
+    }
+
+    function handleFileUploadOpen(){
+      setNewFileOpen(prev => !prev)
       setNewDoctorOpen(false)
       setNewRbtOpen(false)
       setNewStrategyOpen(false)
@@ -159,7 +176,8 @@ function ClientContainer( {currentUser}){
                 <Button variant="outline-primary" onClick={handleNewClientFormOpen}>Add New Client</Button>{' '}
                 </div>
               </div>
-              <div>
+
+            <div>
                 {newDoctorOpen? <NewDoctorForm 
                   setNewDoctorOpen={setNewDoctorOpen}
                   addNewDoctor = {addNewDoctor}/> : null}
@@ -177,12 +195,14 @@ function ClientContainer( {currentUser}){
                   addNewClient={addNewClient}
                   setNewClientOpen={setNewClientOpen}/>: null }
                 {editFormOpen? <EditClientForm 
-                    editClient={editClient}
-                    doctors={doctors}
-                    rbts={rbts}
-                    strategies={strategies}
-                    currentUser={currentUser}
-                    updateClient={updateClient}/> : null}
+                  editClient={editClient}
+                  doctors={doctors}
+                  rbts={rbts}
+                  strategies={strategies}
+                  currentUser={currentUser}
+                  updateClient={updateClient}/> : null}
+                {newFileOpen? <FileUpload
+                  editClient={editClient}/> : null}
               </div>
             </Card>
           </div>
