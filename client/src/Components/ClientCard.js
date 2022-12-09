@@ -38,7 +38,7 @@ function ClientCard({client, currentUser, deleteClient, handleEditFormOpen, hand
           <Card.Title>School Address:</Card.Title>
             <Card.Text>{client.school_address}</Card.Text>
           <Button variant="primary" onClick={testFunction}>Edit Client Information</Button>{'   '}
-          <Button variant="info" onClick={handleButtonFileUploadOpen}>Add a file</Button>{'   '}
+          {/* <Button variant="info" onClick={handleButtonFileUploadOpen}>Add a file</Button>{'   '} */}
           <Button variant="danger" onClick={handleDeleteClient}>Delete Client</Button>
         </Card.Body>
       </Card>

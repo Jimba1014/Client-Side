@@ -101,3 +101,7 @@ code {
   padding-top: 5%;
   padding-bottom: 10%;
 }
+.errors{
+  color: red;
+  font-size: 1.2em;
+}

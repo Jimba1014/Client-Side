@@ -55,7 +55,7 @@ function NewRbtForm({ setNewRbtOpen, addNewRbt }){
                     Submit
                 </Button>
             </Form>
-            {errors? <div>{errors}</div>:null}
+            {errors? <div className='errors'>{errors}</div>:null}
         </div>
     )
 }
