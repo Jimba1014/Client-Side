@@ -24,12 +24,13 @@ function NewDoctorForm( {setNewDoctorOpen, addNewDoctor}){
             if(r.ok) {
                 r.json().then((data) => {
                     addNewDoctor(data)
+                    setNewDoctorOpen(false)
                 })
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
         })
-        setNewDoctorOpen(false)
+        
     }
 
 

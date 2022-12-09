@@ -151,7 +151,7 @@ function ClientFormNew( {currentUser, doctors, rbts, strategies, addNewClient, s
                     Submit
                 </Button>
             </Form>
-            {errors? <div>{errors}</div>:null}
+            {errors? <div className='errors'>{errors}</div>:null}
         </div>
     )
 }

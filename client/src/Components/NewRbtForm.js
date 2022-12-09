@@ -22,12 +22,13 @@ function NewRbtForm({ setNewRbtOpen, addNewRbt }){
             if(r.ok) {
                 r.json().then((data) => {
                     addNewRbt(data)
+                    setNewRbtOpen(false)
                 })
             } else {
                 r.json().then((err) => setErrors(err.errors))
             }
         })
-        setNewRbtOpen(false)
+        
     }
 
     return(
